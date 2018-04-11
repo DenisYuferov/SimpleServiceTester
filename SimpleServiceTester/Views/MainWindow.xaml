@@ -1,0 +1,48 @@
+﻿<Window x:Class="SimpleServiceTester.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Height="600" Width="1000"
+        Title="{Binding Title, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+        FontSize="{Binding FontSize, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+        IsEnabled="{Binding UiEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Menu HorizontalAlignment="Left" VerticalAlignment="Center"
+                  FontSize="{Binding FontSize, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                <MenuItem FontWeight="Bold"
+                          Header="{Binding MenuSettingsHeader, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <MenuItem FontWeight="Normal"
+                              Header="{Binding MenuFontSizeHeader, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{Binding MenuFontSizeItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </MenuItem>
+                    <MenuItem FontWeight="Normal"
+                              Header="{Binding MenuLanguageHeader, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{Binding MenuLanguageItems, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </MenuItem>
+                <MenuItem FontWeight="Bold"
+                          Header="{Binding MenuHelpHeader, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                </MenuItem>
+            </Menu>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid Grid.Column="0" MinWidth="50">
+                <TreeView Name="TreeView" Margin="2,2,2,2">
+                    <TreeViewItem FontWeight="Bold"
+                                  IsExpanded="{Binding TreeViewItemIsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Header="{Binding TreeViewItemHeader, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                  ItemsSource="{Binding TreeViewItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  ContextMenu="{Binding TreeViewItemContextMenu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </TreeViewItem>
+                </TreeView>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
